@@ -1,0 +1,18 @@
+<snippet>
+	<description><![CDATA[Read 2D matrix]]></description>
+    <content><![CDATA[// Read N lines, with M elements per line
+func readMatrix(N,M int) [][]${Type} {
+	m := make([][]${1:Type}, N)
+	for i:=0;i<N;i++ {
+		m[i] = make([]${1:Type}, M)
+	}
+	for i:=0;i<N;i++ {
+		for j:=0;j<M;j++ {
+			x := ${1:Type}(readInt())  // Read single item here
+			m[i][j] = x
+		}
+	}
+	
+	return m
+}]]></content>
+</snippet>

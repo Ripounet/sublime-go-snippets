@@ -1,0 +1,11 @@
+<snippet>
+	<description>Sortable slice</description>
+	<content><![CDATA[
+type ${1:name} []${2:itemType}
+func (this ${1:name}) Len() int{ return len(this) }
+func (this ${1:name}) Less(i,j int) bool{ return this[i]<this[j] }
+func (this ${1:name}) Swap(i,j int) { this[i],this[j] = this[j],this[i] }
+
+stuff := ${1:name}(myslice)
+sort.Sort( stuff )]]></content>
+</snippet>

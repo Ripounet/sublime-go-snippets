@@ -1,0 +1,26 @@
+<snippet>
+	<description>Read Graph</description>
+    <content><![CDATA[func readGraph(n int, directed bool) *Graph {
+	graph := Graph(make([]*Node, n))
+	for i := 0; i < n; i++ {
+		graph[i] = &Node{i, nil}
+	}
+	for i := 0; i < n; i++ {
+		a := readInt()
+		b := readInt()
+		nodeA := graph[a]
+		nodeB := graph[b]
+		if nodeA.Neighbours[nodeB] {
+			panic(Sprintln("Node ", a, " should not already have ", b, " for neighbour"))
+		}
+		nodeA.Neighbours[nodeB]=true
+		if !directed {
+			if nodeB.Neighbours[nodeA] {
+				panic(Sprintln("Node ", b, " should not already have ", a, " for neighbour"))
+			}
+			nodeB.Neighbours[nodeA]=true
+		}
+	}
+	return &graph
+}]]></content>
+</snippet>

@@ -1,0 +1,20 @@
+<snippet>
+	<description>Cumul</description>
+	<content><![CDATA[
+func cumul(a []${1:type}) []${1:type} {
+	sum := 0
+	c := make([]${1:type}, len(a))
+	for i, v := range a {
+		sum += v
+		c[i] = sum
+	}
+	return c
+}
+
+func cumul0(a []${1:type}) []${1:type} {
+	c0 := make([]${1:type}, 1, 1+len(a))
+	c0[0] = 0
+	return append(c0, cumul(a)...)
+}
+]]></content>
+</snippet>

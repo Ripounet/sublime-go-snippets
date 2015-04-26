@@ -1,0 +1,16 @@
+<snippet>
+	<description>Recursive procedure</description>
+    <content><![CDATA[
+func rec(str string, data []int, k int){
+     if terminal condition {
+        return
+     }
+
+     for _, next := range NEIGHBOURS {
+        if next is interesting {
+             rec( str, next, k+1 )
+        }
+     }
+}
+]]></content>
+</snippet>

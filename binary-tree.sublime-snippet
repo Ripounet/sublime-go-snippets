@@ -1,0 +1,40 @@
+<snippet>
+	<description>Binary Tree</description>
+            <content><![CDATA[
+type BinTree struct {
+	Key ${1:keyType}
+	Deco string
+	Left *BinTree
+	Right *BinTree
+}
+
+func (this *BinTree) Insert(x ${1:keyType}) {
+	if x < this.Key {
+		if this.Left == nil {
+			this.Left = &BinTree{ Key:x }
+		}else{
+			this.Left.Insert(x)
+		}
+	}else{
+		if this.Right == nil {
+			this.Right = &BinTree{ Key:x }
+		}else{
+			this.Right.Insert(x)
+		}
+	}
+}
+
+func (this *BinTree) Print(tab int) {
+	if this.Left != nil {
+		this.Left.Print(tab+1)
+	}
+	for i:=0 ; i<tab ; i++ {
+		Print("\t")
+	}
+	Println(this.Key)
+	if this.Right != nil {
+		this.Right.Print(tab+1)
+	}
+}
+]]></content>
+</snippet>

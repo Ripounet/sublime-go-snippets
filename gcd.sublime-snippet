@@ -1,0 +1,16 @@
+<snippet>
+	<description>GCD Greatest Common Divisor, LCM</description>
+	<content><![CDATA[
+func gcd(a, b int64) int64 {
+        for b != 0 {
+                a, b = b, a%b
+        }
+        return a
+}
+
+func lcm(a, b int64) int64 {
+        d := gcd(a,b)
+        return (a/d)*b
+}
+]]></content>
+</snippet>

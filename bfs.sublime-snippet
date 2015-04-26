@@ -1,0 +1,39 @@
+<snippet>
+	<description>BFS</description>
+	<content><![CDATA[
+type Node struct{
+	Id int
+	Neighbours map[*Node]bool
+}
+
+type Graph []*Node
+
+type NodePredicate func(*Node)bool
+
+// This impl returns the closest node (but not the path)
+func (this *Node) bfs(f NodePredicate) *Node{
+	seen := map[*Node]bool {}
+	queue := []*Node { this }
+    for len(queue)>0 {
+        x := queue[0]
+        queue = queue[1:]
+        
+        if seen[x] {
+            continue
+        }
+        seen[x] = true
+        
+        if f(x){
+        	return x
+        }
+        
+        for y, _ := range x.Neighbours{
+        	if !seen[y] {
+        		queue = append(queue, y)
+        	}
+        }
+    }
+    return nil
+}
+]]></content>
+</snippet>

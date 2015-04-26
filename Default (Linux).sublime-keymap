@@ -1,0 +1,11 @@
+[{
+    "args": {
+        "overlay": "command_palette",
+        "text": "Snippet: "
+    },
+    "command": "show_overlay",
+    "keys": [
+        "ctrl+shift+y"
+    ]
+}
+]

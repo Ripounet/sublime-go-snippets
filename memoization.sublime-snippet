@@ -1,0 +1,9 @@
+<snippet>
+	<description><![CDATA[Memoization]]></description>
+    <content><![CDATA[memoiz := map[${1:keyType}]${2:valueType}{}
+value, seen := memoiz["Some State..."]
+if !seen || x>value {
+    memoiz["Some State..."] = x
+}
+]]></content>
+</snippet>

@@ -1,0 +1,16 @@
+<snippet>
+	<description>Monte-Carlo count</description>
+	<content><![CDATA[
+// f : [0,1[ -> bool
+func testMonteCarloCount(f func(float64)bool, n int) int{
+	c := 0
+	for i:=0;i<n;i++ {
+		r := rand.Float64()
+		if f(r) {
+			c++
+		}
+	}
+	return c
+}
+]]></content>
+</snippet>
