@@ -1,25 +1,26 @@
 <snippet>
 	<description><![CDATA[Dichotomy float64]]></description>
-            <content><![CDATA[func dicho(predicate func(float64)bool) float64{
-        // included
-		low := 0.0000000001
-        // excluded
-        high := 0.0000000002
-        // warmup
-        for !predicate(high) {
-        	low *= 2
-            high *= 2
+            <content><![CDATA[// Returns the smallest value matching predicate
+func dicho(predicate func(float64) bool) float64 {
+    if predicate(0.0) {
+        return 0.0
+    }
+    low := 0.0
+    high := 0.0000000001
+    // warmup
+    for !predicate(high) {
+        low = high
+        high *= 2
+    }
+    epsilon := 0.0000000001
+    for high-low > epsilon {
+        x := (low) + ((high - low) / 2.0)
+        if predicate(x) {
+            high = x
+        } else {
+            low = x
         }
-        epsilon := 0.0000000001
-        for high-low>epsilon{
-            x := (low) + ((high-low)/2.0)
-            if predicate(x) {
-                high = x
-            }else{
-                low = x
-            }
-        }
-        // result == low
-        return low
+    }
+    return high
 }]]></content>
 </snippet>

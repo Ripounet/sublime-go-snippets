@@ -1,25 +1,25 @@
 <snippet>
 	<description>Dichotomy int</description>
-    <content><![CDATA[// Returns the highest value not matching predicate
-func dicho(predicate func(int)bool) int{
-        // included
-        low := 1
-        // excluded
-        high := 2
-        // warmup
-        for !predicate(high) {
-        	low *= 2
-            high *= 2
+    <content><![CDATA[// Returns the smallest value matching predicate
+func dicho(predicate func(int) bool) int {
+    if predicate(0) {
+        return 0
+    }
+    low := 0
+    high := 1
+    // warmup
+    for !predicate(high) {
+        low = high
+        high *= 2
+    }
+    for high > low+1 {
+        x := (low) + ((high - low) / 2)
+        if predicate(x) {
+            high = x
+        } else {
+            low = x
         }
-        for high>low+1 {
-            x := (low) + ((high-low)/2)
-            if predicate(x) {
-                high = x
-            }else{
-                low = x
-            }
-        }
-        // result == low
-        return low
+    }
+    return high
 }]]></content>
 </snippet>
