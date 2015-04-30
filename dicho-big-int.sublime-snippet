@@ -1,0 +1,40 @@
+<snippet>
+	<description><![CDATA[Dichotomy big.Int]]></description>
+	<content><![CDATA[
+var ZERO = big.NewInt(0)
+var ONE = big.NewInt(1)
+var TWO = big.NewInt(2)
+
+// Returns the smallest value matching predicate
+func dicho(predicate func(*big.Int) bool) *big.Int {
+	result := new(big.Int)
+	if predicate(ZERO) {
+		return result.Set(ZERO)
+	}
+	low := big.NewInt(0)
+	high := big.NewInt(1)
+	// warmup
+	for !predicate(high) {
+		low.Set(high)
+		high.Add(high, high)
+	}
+	diff := new(big.Int)
+	diff.Sub(high, low)
+	// Read "for high > low+1"
+	for diff.Cmp(ONE) > 0 {
+		x := new(big.Int)
+		// Read "x = (low) + ((high - low) / 2)
+		x.Sub(high, low)
+		x.Div(x, TWO)
+		x.Add(x, low)
+		if predicate(x) {
+			high = x
+		} else {
+			low = x
+		}
+		diff.Sub(high, low)
+	}
+	return result.Set(high)
+}
+]]></content>
+</snippet>
