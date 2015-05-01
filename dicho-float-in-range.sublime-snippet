@@ -1,0 +1,20 @@
+<snippet>
+	<description><![CDATA[Dichotomy float64 in Range]]></description>
+            <content><![CDATA[// Returns the smallest value matching predicate
+func dicho(predicate func(float64) bool, low, high float64) (float64, bool) {
+    epsilon := 0.0000000001
+    if high-low < epsilon {
+        if predicate(high) {
+            return high, true
+        } else {
+            return math.NaN(), false
+        }
+    }
+    x := (low) + ((high - low) / 2.0)
+    if predicate(x) {
+        return dicho(predicate, low, x)
+    } else {
+        return dicho(predicate, x, high)
+    }
+}]]></content>
+</snippet>
