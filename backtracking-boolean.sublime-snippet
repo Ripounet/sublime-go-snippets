@@ -1,0 +1,30 @@
+<snippet>
+	<description>Brute force Boolean with backtracking.</description>
+	<content><![CDATA[
+func try(i, N, cost int) (bool, int) {
+	if i == N {
+		return state.ok(), cost
+	}
+
+	// Don't include i
+	ok1, rec1 := z.try(i+1, N, cost)
+	// Include i
+	state.Add(i)
+	ok2, rec2 := z.try(i+1, N, cost+1)
+	state.Remove(i)
+
+	if !ok2 {
+		return ok1, rec1
+	}
+	if !ok1 {
+		return ok2, rec2
+	}
+	return true, min(rec1, rec2)
+}
+
+func (z *State) ok() bool {
+	// ...
+	return true
+}
+]]></content>
+</snippet>

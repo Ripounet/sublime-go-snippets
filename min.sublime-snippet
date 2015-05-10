@@ -1,0 +1,27 @@
+<snippet>
+	<description>Min</description>
+	<content><![CDATA[
+func min(a ...int) int {
+	m := a[0]
+	for _, v := range a[1:] {
+		if v < m {
+			m = v
+		}
+	}
+	return m
+}
+
+// Returns (min, indexMin)
+func minS(a []int) (int, int) {
+	m := a[0]
+	iMin := 0
+	for i, v := range a {
+		if v < m {
+			m = v
+			iMin = i
+		}
+	}
+	return m, iMin
+}
+]]></content>
+</snippet>

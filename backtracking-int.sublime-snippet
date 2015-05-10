@@ -1,0 +1,46 @@
+<snippet>
+	<description>Brute force Int with backtracking.</description>
+	<content><![CDATA[
+func (st *State) try(i, N int) (bool, int) {
+	if st.impossible() {
+		return false, -1
+	}
+	if i == N {
+		return true, st.profit()
+	}
+
+	// Try all possibilities for i
+	ok := false
+	kbest := -1
+	best := -1
+	for k := 0; k < K; k++ {
+		st.choose(i, k)
+		recOk, recProfit := z.try(i+1, N)
+		if recOk && (!ok || recProfit > best) {
+			ok = true
+			kbest = k
+			best = recProfit
+		}
+		st.remove(i, k)
+	}
+
+	return ok, best
+}
+
+func (st *State) choose(i, k int) {
+	st.path[i] = k
+}
+
+func (st *State) remove(i, k int) bool {
+	st.path[i] = -1
+}
+
+func (st *State) impossible() bool {
+	return false
+}
+
+func (st *State) profit() int {
+	return 42
+}
+]]></content>
+</snippet>

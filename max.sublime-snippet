@@ -1,0 +1,27 @@
+<snippet>
+	<description>Max</description>
+	<content><![CDATA[
+func max(a ...int) int {
+	m := a[0]
+	for _, v := range a[1:] {
+		if v > m {
+			m = v
+		}
+	}
+	return m
+}
+
+// Returns (max, indexMax)
+func maxS(a []int) (int, int) {
+	m := a[0]
+	iMax := 0
+	for i, v := range a {
+		if v > m {
+			m = v
+			iMax = i
+		}
+	}
+	return m, iMax
+}
+]]></content>
+</snippet>
